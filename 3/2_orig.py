@@ -15,11 +15,7 @@ def get_rating(lines, func):
         else:
             num = '0'
 
-        matching_lines = []
-        for line in rating:
-            if line[i] == num:
-                matching_lines.append(line)
-        rating = [*matching_lines]
+        rating = [line for line in rating if line[i] == num]
         if len(rating) == 1:
             return int(rating[0], 2)
 
