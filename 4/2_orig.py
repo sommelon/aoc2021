@@ -63,6 +63,8 @@ won_boards = set()
 
 for guess in guesses:
     for bi in range(len(boards)):
+        if bi in won_boards:
+            continue
         for row in range(ROW_SIZE):
             for col in range(COL_SIZE):
                 if boards[bi][row][col] == guess:
