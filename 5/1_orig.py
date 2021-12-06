@@ -7,13 +7,11 @@ file.close()
 diagram = {} # {'x,y': count}
 
 def get_coords_in_range(coord1, coord2):
-    coord2, coord1 = (coord1, coord2) if coord1 > coord2 else (coord2, coord1)
-    return [coord for coord in range(coord1, coord2 + 1)]
+    return [coord for coord in range(min(coord1, coord2), max(coord1, coord2) + 1)]
 
 
 for line in lines:
-    left = line[0].split(',')
-    right = line[1].split(',')
+    left, right = line[0].split(','), line[1].split(',')
     x1, x2 = int(left[0]), int(right[0])
     y1, y2 = int(left[1]), int(right[1])
 
@@ -24,9 +22,7 @@ for line in lines:
     ys = get_coords_in_range(y1, y2)
 
     for coord in itertools.zip_longest(xs, ys, fillvalue=x1 if len(xs) < len(ys) else y1):
-        coord_str = f'{coord[0]},{coord[1]}'
-        coord_count = diagram.get(coord_str, 0)
-        diagram[coord_str] = coord_count + 1
+        diagram[coord] = diagram.get(coord, 0) + 1
 
 count = 0
 for k, v in diagram.items():
