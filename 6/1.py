@@ -1,4 +1,4 @@
-file = open('./sample.txt', 'r')
+file = open('./input.txt', 'r')
 timers = [int(num) for num in file.read().split(',')]
 file.close()
 
@@ -10,4 +10,4 @@ for day in range(80):
         else:
             timers[i] -= 1
 
-print(len(timers))
+print(len(timers)) #372984
